@@ -29,8 +29,7 @@ app.Use(async (context, next) =>
 {
     Console.WriteLine($"\nMyKey from app => {app.Configuration["MyKey"]}");
 
-    var apiOptions = new MyApiOptions();
-    app.Configuration.GetSection(MyApiOptions.MyApi).Bind(apiOptions);
+    var apiOptions = app.Configuration.GetSection(MyApiOptions.MyApi).Get<MyApiOptions>();
 
     Console.WriteLine($"MyApi.Url from app => {apiOptions.Url}");
     Console.WriteLine($"MyApi.ApiKey from app => {apiOptions.ApiKey}\n");
