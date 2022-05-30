@@ -23,7 +23,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-Console.WriteLine($"MyKey from app => {app.Configuration["MyKey"]}");
+app.Use(async (context, next) =>
+{
+    Console.WriteLine($"MyKey from app => {app.Configuration["MyKey"]}");
+    await next();
+});
+
 
 app.UseHttpsRedirection();
 
