@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+Console.WriteLine($"MyKey from builder => {builder.Configuration["MyKey"]}");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -20,6 +22,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+Console.WriteLine($"MyKey from app => {app.Configuration["MyKey"]}");
 
 app.UseHttpsRedirection();
 
