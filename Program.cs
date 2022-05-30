@@ -19,6 +19,13 @@ Console.WriteLine($"MyKey from builder => {builder.Configuration["MyKey"]}");
 // Putting it last allows to use other providers at startup while having it overriding values after.
 builder.Configuration.AddJsonFile("MyConfig.json", false, true);
 
+var inMemoryProvider = new Dictionary<string, string>{
+    {"MyKey", "MyKey from In-Memory provider" }
+};
+
+builder.Configuration.AddInMemoryCollection(inMemoryProvider);
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
