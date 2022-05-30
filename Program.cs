@@ -25,7 +25,10 @@ if (app.Environment.IsDevelopment())
 
 app.Use(async (context, next) =>
 {
-    Console.WriteLine($"MyKey from app => {app.Configuration["MyKey"]}");
+    Console.WriteLine($"\nMyKey from app => {app.Configuration["MyKey"]}");
+    Console.WriteLine($"MyApi.Url from app => {app.Configuration["MyApi:Url"]}");
+    Console.WriteLine($"MyApi.Url from app => {app.Configuration["MyApi:ApiKey"]}\n");
+
     await next();
 });
 
