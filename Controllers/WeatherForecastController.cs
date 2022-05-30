@@ -12,10 +12,19 @@ public class WeatherForecastController : ControllerBase
     };
 
     private readonly ILogger<WeatherForecastController> _logger;
+    private readonly Microsoft.Extensions.Options.IOptions<MyApiOptions> _myApiOptions;
 
-    public WeatherForecastController(ILogger<WeatherForecastController> logger)
+    public WeatherForecastController(ILogger<WeatherForecastController> logger,
+        Microsoft.Extensions.Options.IOptions<MyApiOptions> myApiOptions)
     {
         _logger = logger;
+        _myApiOptions = myApiOptions;
+        var output = new System.Text.StringBuilder()
+            .AppendLine("Injected custom options in WeatherForecastController with values:")
+            .AppendLine($"- URL => {myApiOptions.Value.Url}")
+            .AppendLine($"- API Key => {myApiOptions.Value.ApiKey}");
+
+        Console.WriteLine(output.ToString());
     }
 
     [HttpGet(Name = "GetWeatherForecast")]

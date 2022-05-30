@@ -11,6 +11,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.Configure<MyApiOptions>(builder.Configuration.GetSection(MyApiOptions.MyApi));
+
 Console.WriteLine($"MyKey from builder => {builder.Configuration["MyKey"]}");
 
 var app = builder.Build();
