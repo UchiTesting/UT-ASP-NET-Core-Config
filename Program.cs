@@ -47,6 +47,8 @@ app.Use(async (context, next) =>
     Console.WriteLine($"MyApi.Url from app => {apiOptions.Url}");
     Console.WriteLine($"MyApi.ApiKey from app => {apiOptions.ApiKey}\n");
 
+    Console.WriteLine($"FallbackKey => {app.Configuration.GetValue<int>("FallbackKey", 2022)}");
+
     await next();
 });
 
