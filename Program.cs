@@ -1,3 +1,5 @@
+using ASP;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -26,8 +28,12 @@ if (app.Environment.IsDevelopment())
 app.Use(async (context, next) =>
 {
     Console.WriteLine($"\nMyKey from app => {app.Configuration["MyKey"]}");
-    Console.WriteLine($"MyApi.Url from app => {app.Configuration["MyApi:Url"]}");
-    Console.WriteLine($"MyApi.Url from app => {app.Configuration["MyApi:ApiKey"]}\n");
+
+    var apiOptions = new MyApiOptions();
+    app.Configuration.GetSection(MyApiOptions.MyApi).Bind(apiOptions);
+
+    Console.WriteLine($"MyApi.Url from app => {apiOptions.Url}");
+    Console.WriteLine($"MyApi.ApiKey from app => {apiOptions.ApiKey}\n");
 
     await next();
 });
