@@ -1,3 +1,4 @@
 {
-  "MyKey":  "From MyConfig.json file"
+  "MyKey": "From MyConfig.json file",
+  "FallbackKey": 22
 }
