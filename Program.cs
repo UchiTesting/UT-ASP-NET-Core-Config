@@ -15,6 +15,10 @@ builder.Services.Configure<MyApiOptions>(builder.Configuration.GetSection(MyApiO
 
 Console.WriteLine($"MyKey from builder => {builder.Configuration["MyKey"]}");
 
+// You can put it as soon as builder is declared. Where it is placed is important.
+// Putting it last allows to use other providers at startup while having it overriding values after.
+builder.Configuration.AddJsonFile("MyConfig.json", false, true);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
